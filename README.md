@@ -7,13 +7,18 @@ Only binary build is supported.
 
 ##### How to use
 
-##### Start development
+Import image
+
+	oc import-image jalammas/openshift-s2i-java:latest
 
 Create new binary build from local directory 
 
 	oc new-build "openshift-s2i-java:latest" --name=myapp --binary=true
-	
 
 Start build
 
 	oc start-build myapp --from-file=myfatjar.jar --follow=true --wait=true
+	
+Create app
+
+	oc new-app myapp
