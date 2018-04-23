@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+#
+# S2I run script for the 'java-standalone' image.
+# The run script executes the server that runs your application.
+#
+# For more information see the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+# Always include jolokia-opts, which can be empty if switched off via env
+JAVA_OPTIONS=$(/opt/jolokia/jolokia-opts) 
+
+exec java $JAVA_OPTIONS -Djava.security.egd=file:/dev/./urandom  -jar `find $HOME -name \*.jar`
+

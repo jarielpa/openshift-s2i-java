@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cat <<EOF
+This is the java S2I image. Only single jar file binary build is supported
+EOF

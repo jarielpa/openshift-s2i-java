@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# S2I assemble script for the 'java-standalone' image.
+# The 'assemble' script builds your application source so that it is ready to run.
+#
+# For more information refer to the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+echo "---> Installing application source... only single jar binary build supported"
+
+echo "---> Building application from source..... only single jar binary build supported"
+# Add build steps for your application, eg npm install, bundle install, pip install, etc.
+
+echo "---> Moving JAR artifact to application root"
+find /tmp/src -name \*.jar | xargs -I FILE cp FILE ${HOME}
+
+
+echo "---> Clean tmp to minimize size of final image"
+rm -ifr /tmp/src
+
