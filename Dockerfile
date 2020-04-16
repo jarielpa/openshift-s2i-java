@@ -14,6 +14,8 @@ LABEL io.k8s.description="Platform for running plain Java applications (fat-jar)
       io.openshift.tags="builder,java,openjdk8,alpine" \
       io.openshift.s2i.scripts-url=image://${STI_SCRIPTS_PATH}
 
+ENV LANG C.UTF-8
+
 USER root
 
 # Add user
@@ -25,7 +27,7 @@ RUN  mkdir -p ${HOME} \
 
 # Jolokia agent
 RUN mkdir -p /opt/jolokia/etc \
-&& wget http://central.maven.org/maven2/org/jolokia/jolokia-jvm/1.3.6/jolokia-jvm-1.3.6-agent.jar -O /opt/jolokia/jolokia.jar
+&& wget https://repo1.maven.org/maven2/org/jolokia/jolokia-jvm/1.3.6/jolokia-jvm-1.3.6-agent.jar -O /opt/jolokia/jolokia.jar
 ADD jolokia-opts /opt/jolokia/jolokia-opts
 RUN chmod 444 /opt/jolokia/jolokia.jar \
  && chmod 755 /opt/jolokia/jolokia-opts \
